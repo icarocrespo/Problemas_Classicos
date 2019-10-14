@@ -2,16 +2,17 @@ package MontanhaRussa;
 
 import java.util.Random;
 
-public class AlimentaFila implements Runnable {
+public class NewFila implements Runnable {
 
     public Fila fila;
     Integer n_passageiros = Carrinho.numeroPassageiros;
-    public AlimentaFila(Fila fila) {
+    
+    public NewFila(Fila fila) {
         this.fila = fila;
     }
 
     public void run() {
-        System.out.println("Thread AlimentaFila Iniciada!");
+        System.out.println("AlimentaFila");
         while (n_passageiros > 0) {
             int tempoAleatorio = (int) (Math.random() * (Fila.tempoEntradaFilaMaximo - Fila.tempoEntradaFilaMinimo) + Fila.tempoEntradaFilaMinimo);
             System.out.println("Tempo para o proximo entra na fila: " + tempoAleatorio);

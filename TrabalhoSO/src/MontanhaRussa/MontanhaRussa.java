@@ -18,12 +18,13 @@ public class MontanhaRussa implements Runnable {
             try {
                 Thread.sleep(tempoVoltaMontanha * 1000);
                 Thread.sleep(Fila.tempoEmbarqueDesembarque * 1000 * Carrinho.numeroLugaresCarrinho);
-
+                // utilizamos 1000 como visto em uma vídeo aula e fora um bom número
+                // aqui é possível alterar o valor a ser multiplicado para ter diferentes saídas
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }
-        System.out.println("Finalizada thread montanha russa");
+        System.out.println("Fim MontanhaRussa");
     }
 
     public void init() {

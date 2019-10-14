@@ -4,13 +4,15 @@ public class Main {
 
     public static void main(String[] args) {
 
+        // instanciação e chamada da execução
+        
         Carrinho carro = new Carrinho(Carrinho.numeroLugaresCarrinho);
         MontanhaRussa montanha = new MontanhaRussa(carro);
         Fila fila = new Fila();
-        AlimentaFila alimentaFila = new AlimentaFila(fila);
+        NewFila newFila = new NewFila(fila);
         Maquinista maquinista = new Maquinista(fila, carro, montanha);
 
-        alimentaFila.init();
+        newFila.init();
         maquinista.init();
     }
 }

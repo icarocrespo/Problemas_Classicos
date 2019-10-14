@@ -13,16 +13,20 @@ public class Maquinista implements Runnable {
         this.carrinho = carrinho;
         this.montanha = montanha;
     }
+    
+    public Maquinista(){
+    
+    }
 
     public void run() {
-        System.out.println("Thread Maquinista inciado!");
+        System.out.println("Maquinista");
         while (true) {
             try {
                 while (!fila.estaVazia() || carrinho.estaCheio()) {
                     boolean entrouNoCarrinho = carrinho.add();
                     if (entrouNoCarrinho) {
-                        System.out.println("Entrou no carrinho");
-                        System.out.println("Qtd de pessoas no carrinho: " + carrinho.getPassageiros());
+                        System.out.println("NOVO PASSAGEIRO");
+                        System.out.println("Pessoas no carrinho: " + carrinho.getPassageiros());
                         fila.sair();
                     } else {
                         montanha.run();
