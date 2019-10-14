@@ -18,12 +18,12 @@ public class Maquinista implements Runnable {
         System.out.println("Thread Maquinista inciado!");
         while (true) {
             try {
-                while (!fila.filaVazia() || carrinho.estaCheio()) {
+                while (!fila.estaVazia() || carrinho.estaCheio()) {
                     boolean entrouNoCarrinho = carrinho.add();
                     if (entrouNoCarrinho) {
                         System.out.println("Entrou no carrinho");
                         System.out.println("Qtd de pessoas no carrinho: " + carrinho.getPassageiros());
-                        fila.saiDaFila();
+                        fila.sair();
                     } else {
                         montanha.run();
                         carrinho.remove();

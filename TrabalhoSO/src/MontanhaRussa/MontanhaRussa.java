@@ -9,11 +9,14 @@ public class MontanhaRussa implements Runnable {
     public MontanhaRussa(Carrinho carrinho) {
         this.carrinho = carrinho;
     }
+    public MontanhaRussa() {
+    }
 
+    @Override
     public void run() {
         synchronized (this) {
             try {
-                Thread.sleep(tempoVoltaMontanha * 1000);  
+                Thread.sleep(tempoVoltaMontanha * 1000);
                 Thread.sleep(Fila.tempoEmbarqueDesembarque * 1000 * Carrinho.numeroLugaresCarrinho);
 
             } catch (InterruptedException e) {

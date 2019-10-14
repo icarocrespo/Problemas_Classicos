@@ -17,11 +17,11 @@ public class AlimentaFila implements Runnable {
             System.out.println("Tempo para o proximo entra na fila: " + tempoAleatorio);
             try {
                 Thread.sleep(tempoAleatorio * 1000);
-                fila.entraNaFila();
+                fila.entrar();
                 n_passageiros--;
 
                 System.out.println("Entrou na fila");
-                System.out.println("Fila com: " + fila.getNumeroPassageirosNaFila());
+                System.out.println("Fila com: " + fila.getPassageirosFila());
                 System.out.println("Numero de passageiros: " + n_passageiros);
 
             } catch (InterruptedException e) {
@@ -29,7 +29,7 @@ public class AlimentaFila implements Runnable {
             }
         }
         System.out.println("Thread Finalizada!");
-        System.out.println("Numero de pessoas na fila: " + fila.getNumeroPassageirosNaFila());
+        System.out.println("Numero de pessoas na fila: " + fila.getPassageirosFila());
     }
 
     public void init() {

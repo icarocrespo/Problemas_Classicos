@@ -2,36 +2,41 @@ package MontanhaRussa;
 
 public class Fila {
 
-    static final int tempoEmbarqueDesembarque = 5;
-    static final int tempoEntradaFilaMinimo = 5;
-    static final int tempoEntradaFilaMaximo = 10;
+    public static final int tempoEmbarqueDesembarque = 5;
+    public static final int tempoEntradaFilaMinimo = 5;
+    public static final int tempoEntradaFilaMaximo = 10;
     
-    private int numeroPassageirosNaFila = 0;
+    private int passageirosFila;
 
     public Fila() {
+        passageirosFila = 0;
     }
 
-    public boolean filaVazia() {
-        return this.numeroPassageirosNaFila == 0;
+    public boolean estaVazia() {
+        if (passageirosFila == 0){
+            return true;
+        }
+        return false;
     }
 
-    public int getNumeroPassageirosNaFila() {
+    public int getPassageirosFila() {
         synchronized (this) {
-            return this.numeroPassageirosNaFila;
+            return passageirosFila;
         }
     }
 
-    void entraNaFila() {
+    public boolean entrar() {
         synchronized (this) {
-            this.numeroPassageirosNaFila++;
+            passageirosFila++;
+            return true;
         }
     }
 
-    void saiDaFila() {
+    public boolean sair() {
         synchronized (this) {
-            this.numeroPassageirosNaFila--;
+            passageirosFila--;
+            return true;
         }
-
     }
 
 }

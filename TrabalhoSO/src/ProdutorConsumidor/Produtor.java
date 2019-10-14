@@ -20,10 +20,14 @@ public class Produtor extends Thread {
         this.mutex = mutex;
     }
 
+    public Produtor(){
+    
+    }
+    
     public void put() {
         try {
             valor = (int)(Math.random() * 20 + 1);
-            System.out.println("Thread Produtor #" + n_thread + " colocando valor " + valor + " no buffer...");
+            System.out.println("Thread Produtor #" + n_thread + " colocando valor " + valor + " no buffer");
             buffer.add(valor);
             Thread.sleep((long)(Math.random() * 300));
         } catch (Exception e) {

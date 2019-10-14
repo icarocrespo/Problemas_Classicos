@@ -19,11 +19,15 @@ public class Consumidor extends Thread {
         this.esvaziar = esvaziar;
         this.mutex = mutex;
     }
+    
+    public Consumidor(){
+
+    }
 
     public void get() {
         try {
             valor = buffer.remove();
-            System.out.println("Thread Consumidor #" + n_thread + " retirando valor " + valor + " do buffer...");
+            System.out.println("Thread Consumidor #" + n_thread + " retirando valor " + valor + " do buffer");
             Thread.sleep((long) (Math.random() * 500));
         } catch (Exception e) {
             e.printStackTrace();
