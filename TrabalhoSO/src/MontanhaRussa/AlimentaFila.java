@@ -4,28 +4,25 @@ import java.util.Random;
 
 public class AlimentaFila implements Runnable {
 
-    int tempoEntradaFilaMinimo = Config.tempoEntradaFilaMinimo;
-    int tempoEntradaFilaMaximo = Config.tempoEntradaFilaMaximo;
-    int numeroPassageiros = Config.numeroPassageiros;
-    Fila fila;
-
+    public Fila fila;
+    Integer n_passageiros = Carrinho.numeroPassageiros;
     public AlimentaFila(Fila fila) {
         this.fila = fila;
     }
 
     public void run() {
         System.out.println("Thread AlimentaFila Iniciada!");
-        while (numeroPassageiros > 0) {
-            int tempoAleatorio = (int) (Math.random() * (tempoEntradaFilaMaximo - tempoEntradaFilaMinimo) + tempoEntradaFilaMinimo);
+        while (n_passageiros > 0) {
+            int tempoAleatorio = (int) (Math.random() * (Fila.tempoEntradaFilaMaximo - Fila.tempoEntradaFilaMinimo) + Fila.tempoEntradaFilaMinimo);
             System.out.println("Tempo para o proximo entra na fila: " + tempoAleatorio);
             try {
                 Thread.sleep(tempoAleatorio * 1000);
                 fila.entraNaFila();
-                this.numeroPassageiros--;
+                n_passageiros--;
 
                 System.out.println("Entrou na fila");
                 System.out.println("Fila com: " + fila.getNumeroPassageirosNaFila());
-                System.out.println("Numero de passageiros: " + this.numeroPassageiros);
+                System.out.println("Numero de passageiros: " + n_passageiros);
 
             } catch (InterruptedException e) {
                 e.printStackTrace();

@@ -2,34 +2,34 @@ package MontanhaRussa;
 
 public class Maquinista implements Runnable {
 
-    int delayMaquinista = Config.delayMaquinista;
-    Fila fila;
-    Carro carro;
-    MontanhaRussa montanha;
+    static final int delayMaquinista = 10;
 
-    public Maquinista(Fila fila, Carro carro, MontanhaRussa montanha) {
+    public Fila fila;
+    public Carrinho carrinho;
+    public MontanhaRussa montanha;
+
+    public Maquinista(Fila fila, Carrinho carrinho, MontanhaRussa montanha) {
         this.fila = fila;
-        this.carro = carro;
+        this.carrinho = carrinho;
         this.montanha = montanha;
     }
 
-    //to do esvaziar carro so quando acabar volta da montanha russa
     public void run() {
         System.out.println("Thread Maquinista inciado!");
         while (true) {
             try {
-                while (!fila.filaVazia() || carro.carroCheio()) {
-                    boolean entrouNoCarro = carro.entraNaCarro();
-                    if (entrouNoCarro) {
-                        System.out.println("Entrou no carro");
-                        System.out.println("Qtd de pessoas no carro: " + carro.getNumPassageiros());
+                while (!fila.filaVazia() || carrinho.estaCheio()) {
+                    boolean entrouNoCarrinho = carrinho.add();
+                    if (entrouNoCarrinho) {
+                        System.out.println("Entrou no carrinho");
+                        System.out.println("Qtd de pessoas no carrinho: " + carrinho.getPassageiros());
                         fila.saiDaFila();
-                    } else { // o carro ja esta cheio, temos que rodar a montanha
+                    } else {
                         montanha.run();
-                        carro.esvaziarCarro();
+                        carrinho.remove();
                     }
                 }
-                Thread.sleep(this.delayMaquinista * 1000);  //tempo em que o maquinista verifica a fila
+                Thread.sleep(this.delayMaquinista * 1000);
                 System.out.println("Maquinista verifica fila...");
             } catch (InterruptedException e) {
                 e.printStackTrace();

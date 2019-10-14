@@ -1,30 +1,31 @@
 package JantarDosFilosofos;
 
 public class Filosofo {
-    private Garfo garfoEsquerda;
-    private Garfo garfoDireita;
+
+    private Garfo g_esquerda;
+    private Garfo g_direita;
     private String nome;
-    private int tempoExecucao;
-    private boolean removeFlag;
+    private Integer tempo;
+    private boolean flag;
 
     public Filosofo() {
 
     }
 
-    public Garfo getGarfoEsquerda() {
-        return garfoEsquerda;
+    public Garfo getG_esquerda() {
+        return g_esquerda;
     }
 
-    public void setGarfoEsquerda(Garfo garfoEsquerda) {
-        this.garfoEsquerda = garfoEsquerda;
+    public void setG_esquerda(Garfo g_esquerda) {
+        this.g_esquerda = g_esquerda;
     }
 
-    public Garfo getGarfoDireita() {
-        return garfoDireita;
+    public Garfo getG_direita() {
+        return g_direita;
     }
 
-    public void setGarfoDireita(Garfo garfoDireita) {
-        this.garfoDireita = garfoDireita;
+    public void setG_direita(Garfo g_direita) {
+        this.g_direita = g_direita;
     }
 
     public String getNome() {
@@ -35,21 +36,20 @@ public class Filosofo {
         this.nome = nome;
     }
 
-    public int getTempoExecucao() {
-        return tempoExecucao;
+    public Integer getTempo() {
+        return tempo;
     }
 
-    public void setTempoExecucao(int tempoExecucao) {
-        this.tempoExecucao = tempoExecucao;
+    public void setTempo(Integer tempo) {
+        this.tempo = tempo;
     }
 
-    public boolean getRemoveFlag() {
-        return removeFlag;
+    public boolean getFlag() {
+        return flag;
     }
 
-    public void setRemoveFlag(boolean removeFlag) {
-        this.removeFlag = removeFlag;
+    public void setFlag(boolean flag) {
+        this.flag = flag;
     }
-
 
 }

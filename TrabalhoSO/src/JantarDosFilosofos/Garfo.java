@@ -1,6 +1,7 @@
 package JantarDosFilosofos;
 
 public class Garfo {
+
     private String nome;
     private boolean emUso = false;
 
@@ -20,13 +21,11 @@ public class Garfo {
         this.nome = nome;
     }
 
-    public void mudarUso(boolean emUso) {
+    public void setEmUso(boolean emUso) {
         this.emUso = emUso;
     }
 
-    public boolean getUso() {
+    public boolean getEmUso() {
         return emUso;
     }
-
-
 }

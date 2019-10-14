@@ -2,21 +2,19 @@ package MontanhaRussa;
 
 public class MontanhaRussa implements Runnable {
 
-    int tempoVoltaMontanha = Config.tempoVoltaMontanha;
-    int tempoEmbarqueDesembarque = Config.tempoEmbarqueDesembarque;
-    int numeroLugaresCarro = Config.numeroLugaresCarro;
-    Carro carro;
+    public static final Integer tempoVoltaMontanha = 10;
 
-    public MontanhaRussa(Carro carro) {
-        this.carro = carro;
+    public Carrinho carrinho;
+
+    public MontanhaRussa(Carrinho carrinho) {
+        this.carrinho = carrinho;
     }
 
     public void run() {
-        System.out.println("Thread Montanha russa iniciada!");
         synchronized (this) {
             try {
-                Thread.sleep(tempoVoltaMontanha * 1000);  //volta da montanha
-                Thread.sleep(tempoEmbarqueDesembarque * 1000 * numeroLugaresCarro); // tempo de embarque e desembarque
+                Thread.sleep(tempoVoltaMontanha * 1000);  
+                Thread.sleep(Fila.tempoEmbarqueDesembarque * 1000 * Carrinho.numeroLugaresCarrinho);
 
             } catch (InterruptedException e) {
                 e.printStackTrace();

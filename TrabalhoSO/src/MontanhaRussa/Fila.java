@@ -2,6 +2,10 @@ package MontanhaRussa;
 
 public class Fila {
 
+    static final int tempoEmbarqueDesembarque = 5;
+    static final int tempoEntradaFilaMinimo = 5;
+    static final int tempoEntradaFilaMaximo = 10;
+    
     private int numeroPassageirosNaFila = 0;
 
     public Fila() {
