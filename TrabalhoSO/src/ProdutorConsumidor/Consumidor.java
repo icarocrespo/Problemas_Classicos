@@ -4,26 +4,27 @@ import java.util.concurrent.Semaphore;
 import java.util.concurrent.locks.Lock;
 
 public class Consumidor extends Thread {
-    private int thread;
-    private int valor;
+
+    private Integer n_thread;
+    private Integer valor;
+    private Lock mutex;
     private Semaphore preencher;
     private Semaphore esvaziar;
-    private BufferDados buffer;
-    private Lock mutex;
+    private Buffer buffer;
 
-    public Consumidor(int idThread, BufferDados buffer, Semaphore  preencher, Semaphore esvaziar, Lock mutex) {
-        this.thread = idThread;
+    public Consumidor(int n_thread, Buffer buffer, Semaphore preencher, Semaphore esvaziar, Lock mutex) {
+        this.n_thread = n_thread;
         this.buffer = buffer;
-        this. preencher =  preencher;
+        this.preencher = preencher;
         this.esvaziar = esvaziar;
         this.mutex = mutex;
     }
 
     public void get() {
         try {
-            valor = buffer.retirarValorDoBuffer();
-            System.out.println("Thread Consumidor #" + thread + " retirando valor " + valor + " do buffer...");
-            Thread.sleep((long)(Math.random() * 500));
+            valor = buffer.remove();
+            System.out.println("Thread Consumidor #" + n_thread + " retirando valor " + valor + " do buffer...");
+            Thread.sleep((long) (Math.random() * 500));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -33,7 +34,6 @@ public class Consumidor extends Thread {
     public void run() {
         for (int i = 0; i < 20; i++) {
             try {
-                // Decrementar
                 preencher.acquire();
                 mutex.lock();
                 get();
@@ -41,7 +41,6 @@ public class Consumidor extends Thread {
                 e.printStackTrace();
             } finally {
                 mutex.unlock();
-                // Incrementar
                 esvaziar.release();
             }
         }

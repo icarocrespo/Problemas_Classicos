@@ -4,27 +4,28 @@ import java.util.concurrent.Semaphore;
 import java.util.concurrent.locks.Lock;
 
 public class Produtor extends Thread {
-    private int thread;
-    private int valor;
-    private Semaphore preencher;
-    private Semaphore esvaziar;
-    private BufferDados buffer;
+    private Integer n_thread;
+    private Integer valor;
     private Lock mutex;
+    private Semaphore coloca;
+    private Semaphore tira;
+    private Buffer buffer;
+    
 
-    public Produtor(int thread, BufferDados buffer, Semaphore preencher, Semaphore esvaziar, Lock mutex) {
-        this.thread = thread;
+    public Produtor(Integer n_thread, Buffer buffer, Semaphore coloca, Semaphore tira, Lock mutex) {
+        this.n_thread = n_thread;
         this.buffer = buffer;
-        this.preencher = preencher;
-        this.esvaziar = esvaziar;
+        this.coloca = coloca;
+        this.tira = tira;
         this.mutex = mutex;
     }
 
     public void put() {
         try {
             valor = (int)(Math.random() * 20 + 1);
-            System.out.println("Thread Produtor #" + thread + " colocando valor " + valor + " no buffer...");
-            buffer.adicionarValorNoBuffer(valor);
-            Thread.sleep((long)(Math.random() * 250));
+            System.out.println("Thread Produtor #" + n_thread + " colocando valor " + valor + " no buffer...");
+            buffer.add(valor);
+            Thread.sleep((long)(Math.random() * 300));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -34,16 +35,14 @@ public class Produtor extends Thread {
     public void run() {
         for (int i = 0; i < 20; i++) {
             try {
-                // Proberen (Decrementar)
-                esvaziar.acquire();
+                tira.acquire();
                 mutex.lock();
                 put();
             } catch (InterruptedException e) {
                 e.printStackTrace();
             } finally {
                 mutex.unlock();
-                // Verhogen (Incrementar)
-                preencher.release();
+                coloca.release();
             }
         }
     }
